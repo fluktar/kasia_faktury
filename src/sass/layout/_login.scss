@@ -1,0 +1,15 @@
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  label {
+    font-size: 2rem;
+  }
+  input {
+    font-size: 2rem;
+    margin: 1rem;
+    padding: 0.5rem;
+  }
+}

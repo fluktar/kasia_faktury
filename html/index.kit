@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/dist/css/style.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="u-margin-bottom-medium">Wprowadź dane faktury</h1>
+      <form id="invoice-form" action="/kasia_faktury" method="post">
+        <label for="hours">Liczba godzin:</label>
+        <input
+          type="number"
+          id="hours"
+          name="hours"
+          value="<%= invoice.hours %>"
+        />
+
+        <label for="rate">Stawka:</label>
+        <input
+          type="number"
+          id="rate"
+          name="rate"
+          value="<%= invoice.rate %>"
+          required
+        />
+
+        <label for="description">Opis:</label>
+        <input
+          type="text"
+          id="description"
+          value="<%= invoice.description %>"
+          name="description"
+          required
+        />
+
+        <label for="invoice-number">Numer faktury:</label>
+        <input
+          type="text"
+          id="invoiceNumber"
+          name="invoiceNumber"
+          value="<%= invoice.invoiceNumber %>"
+          required
+        />
+
+        <label for="date">Data:</label>
+        <input
+          type="date"
+          id="date"
+          name="date"
+          value="<%= invoice.date %>"
+          required
+        />
+
+        <button class="btn" type="submit">Zapisz i podgląd</button>
+        <button class="btn" type="button">
+          <a href="invoices"> Przeglądaj faktury</a>
+        </button>
+      </form>
+    </div>
+    @@include('_footer.kit')
+    <script src="/dist/js/script.min.js"></script>
+  </body>
+</html>

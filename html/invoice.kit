@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faktura</title>
+    <link rel="stylesheet" href="../dist/css/style.min.css" />
+  </head>
+  <body>
+    <div class="invoice">
+      <h1>Faktura</h1>
+      <div class="invoice_number_text">Numer faktury:</div>
+      <div class="date_invoice" type="data"><%= invoice.invoiceNumber %></div>
+      <!-- <div
+        class="invoice_number"
+        type="data"
+        id="invoice-number"
+        name="invoice-number"
+      >
+        <%= invoice.date %>
+      </div> -->
+    </div>
+    <div style="height: 2rem"></div>
+    <div class="data_sale">
+      <div class="place_of_issu data_col">Miejsce wystawienia:</div>
+      <span>Warszawa</span>
+      <div class="date_of_sale data_col">Data wystawienia:</div>
+      <span type="data"><%= invoice.date %></span>
+      <div class="data_of_service data_col">Data sprzedaży:</div>
+      <span type="data" class="date_invoice"><%= invoice.date %></span>
+    </div>
+    <div style="height: 4rem"></div>
+    <div class="data_contractors">
+      <div class="contractor">
+        <div class="contractor_name">
+          Nazwa firmy:
+          <span>Indywidualna praktyka lekarska Katarzyna Baścik</span>
+        </div>
+        <div class="contractor_address">
+          Adres firmy: <span>Bluszczańska 14a/15</span>
+        </div>
+        <div class="contractor_zipcode">Zip-code: <span>00-712</span></div>
+        <div class="city">Miasto: <span>Warszawa</span></div>
+        <div class="contractor_nip">NIP: 1234567890</div>
+      </div>
+      <div class="contractor">
+        <div class="contractor_name">
+          Nazwa firmy: <span>SPSK im. prof. W. Orłowskiego CMKP</span>
+        </div>
+        <div class="contractor_address">
+          Adres firmy: <span>ul. Czerniakowska 231</span>
+        </div>
+        <div class="contractor_zipcode">Zip-code: <span>00-416</span></div>
+        <div class="city">Miasto: <span>Warszawa</span></div>
+        <div class="contractor_nip">NIP: 1234567890</div>
+      </div>
+    </div>
+    <div class="data_income">
+      <table>
+        <tr>
+          <td>Ilość</td>
+          <td>Nazwa towaru lub usługi</td>
+          <td>Ilość sztuk (godzin)</td>
+
+          <td>Cena netto</td>
+          <td>Wartość netto</td>
+          <td>Stawka VAT</td>
+          <td>Kwota Vat</td>
+          <td>Wartość brutto</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td type="text" id="description" name="description">
+            <%= invoice.description %>
+          </td>
+          <td type="number" id="hours" name="hours"><%= invoice.hours %></td>
+          <td type="number" id="rate" name="rate"><%= invoice.rate %></td>
+          <td type="number" id="hours_rate" name="hours_rate">
+            <%= invoice.rateMultiplyHours %>
+          </td>
+          <td>ZW</td>
+
+          <td>0</td>
+          <td type="number" id="hours_rate" name="hours_rate">
+            <%= invoice.rateMultiplyHours %>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>0</td>
+          <td>ZW</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>0</td>
+          <td>ZW</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Suma</td>
+          <td type="number" id="hours_rate" name="hours_rate">
+            <%= invoice.rateMultiplyHours %>
+          </td>
+          <td>ZW</td>
+          <td>0</td>
+          <td type="number" id="hours_rate" name="hours_rate">
+            <%= invoice.rateMultiplyHours %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="bank_num">
+      <p>nr rachunku: 13 1140 2004 0000 3402 7932 4140</p>
+    </div>
+    <div class="sum">
+      <p>
+        Do zapłaty:
+        <span type="number" id="hours_rate verbal_rate" name="hours_rate"
+          ><%= invoice.rateMultiplyHours %></span
+        >
+        zł
+      </p>
+      <p>
+        Słownie:
+        <span id="number_to_word"> <%= numberToWords %> </span>
+        zł
+      </p>
+    </div>
+    <p id="zw">
+      * Usługi zwolnione - na podst. art. 43 ust. 1 p.18-20 Ustawy o VAT-PKWiU
+      86.21.Z
+    </p>
+    <div style="height: 4rem"></div>
+    <div class="signature">
+      <div class="signature1">
+        <p>Podpis osoby upoważnionej do wystawienia faktury</p>
+      </div>
+      <div class="signature2">
+        <p>Podpis osoby upoważnionej do odbierania faktury</p>
+      </div>
+    </div>
+    <div class="print">
+      <button class="btn btn_print" id="btn_print" action="print">
+        Zapisz jako pdf
+      </button>
+    </div>
+
+    <script src="/dist/js/script.min.js"></script>
+  </body>
+</html>

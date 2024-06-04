@@ -1,0 +1,7 @@
+node_modules
+	src
+	html
+	gulpfile.mjs
+	package.json
+	package-lock.json
+	*.log
