@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
+const print = require("../util/print");
 const db = require("../data/database");
 const lastInvoiceData = require("../util/lastInvoiceData");
 const router = express.Router();
@@ -54,6 +56,24 @@ router.post("/kasia_faktury", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send("Error adding invoice");
+  }
+});
+
+router.post("/save-pdf", async (req, res) => {
+  const { htmlContent } = req.body;
+  const outputPath = path.join(
+    __dirname,
+    "..",
+    "faktury",
+    `${new Date().toISOString().split("T")[0]}.pdf`
+  );
+
+  try {
+    await print(htmlContent, outputPath);
+    res.status(200).send("PDF zapisany pomyślnie.");
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Błąd podczas zapisywania PDF.");
   }
 });
 

@@ -58,13 +58,14 @@
   width: 80%;
   margin: 10rem auto;
   margin-top: 2rem;
+  grid-gap: 1rem;
   .contractor {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 }
 .data_income {
   display: grid;
-  margin: 10rem auto;
+  margin: 7rem auto;
   margin-top: 2rem;
   width: 80%;
   font-size: 1.75rem;
@@ -104,7 +105,7 @@
 .signature {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  margin: 4rem auto;
+  margin: 2rem auto;
   width: 60%;
   font-size: 2rem;
   .signature1,
@@ -148,4 +149,7 @@
     border-radius: 10px;
     z-index: 1000;
   }
+}
+.no-print {
+  display: none;
 }
