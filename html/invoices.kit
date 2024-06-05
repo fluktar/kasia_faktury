@@ -9,18 +9,22 @@
   <body>
     <div class="container">
       <h1 class="invoice_list">Lista Faktur</h1>
-      <div id="invoices-list">
+      <div class="invoices-list">
         <ul>
           <% for(let i = 0; i < invoices.length; i++) { %>
           <li class="invoice_element">
             <div>
               <div class="invoice">
-                <p>Godziny: <%= invoices[i].hours %></p>
-                <p>Stawka: <%= invoices[i].rate %></p>
-                <p>Opis: <%= invoices[i].description %></p>
-                <p>Numer faktury: <%= invoices[i].invoiceNumber %></p>
-                <p>Data: <%= invoices[i].date %></p>
-                <p>Stawka razy godziny: <%= invoices[i].rateMultiplyHours %></p>
+                <p class="item-1 item">Godziny: <%= invoices[i].hours %></p>
+                <p class="item-2 item">Stawka: <%= invoices[i].rate %></p>
+                <p class="item-3 item">Opis: <%= invoices[i].description %></p>
+                <p class="item-4 item">
+                  Numer faktury: <%= invoices[i].invoiceNumber %>
+                </p>
+                <p class="item-5 item">Data: <%= invoices[i].date %></p>
+                <p class="item-6 item">
+                  Stawka razy godziny: <%= invoices[i].rateMultiplyHours %>
+                </p>
               </div>
               <a href="/invoice/<%= invoices[i]._id %>">Link do faktury</a>
             </div>

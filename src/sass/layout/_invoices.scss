@@ -2,7 +2,58 @@
   margin: 2rem auto;
   justify-content: start;
   .invoices-list {
-    justify-content: center;
-    width: 80%;
+    margin-top: 2rem;
+    .invoice_element {
+      border: 1px solid black;
+      box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 4rem;
+    }
+
+    .invoice {
+      display: grid;
+      grid-template-columns: repeat(2, 1f);
+      grid-gap: 1rem;
+      font-size: 2rem;
+      .item {
+        margin: 0.5rem;
+        padding: 1rem;
+        border: 1px solid black;
+
+        text-align: start;
+        &-1 {
+          grid-column: 1/2;
+          grid-row: 2/3;
+        }
+        &-2 {
+          grid-column: 1/2;
+          grid-row: 3/4;
+        }
+        &-3 {
+          grid-column: 1/2;
+          grid-row: 4/5;
+        }
+        &-4 {
+          grid-column: 1/2;
+          grid-row: 1/2;
+        }
+
+        &-6 {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          grid-column: 2/3;
+          grid-row: 3/5;
+        }
+      }
+    }
+    a {
+      text-decoration: none;
+      color: black;
+      font-size: 2rem;
+      margin: 1rem auto;
+      display: flex;
+      justify-content: center;
+    }
   }
 }

@@ -7,7 +7,7 @@ const getInvoiceList = require("../util/invoice_element");
 const lastInvoiceData = require("../util/lastInvoiceData");
 const router = express.Router();
 const number_words = require("../util/number_words");
-const { get } = require("browser-sync");
+
 router.use(bodyParser.json()); // for parsing application/json
 router.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -37,6 +37,7 @@ router.post("/login", async (req, res) => {
     console.log(error);
   }
 });
+
 router.post("/kasia_faktury", async (req, res) => {
   const { hours, rate, description, invoiceNumber, date } = req.body;
   const rateMultiplyHours = hours * rate;
@@ -78,18 +79,66 @@ router.post("/save-pdf", async (req, res) => {
     res.status(500).send("Błąd podczas zapisywania PDF.");
   }
 });
+
 router.get("/invoices", async (req, res) => {
   try {
     const getInvoices = await getInvoiceList();
-    console.log(getInvoices);
-
     res.render("invoices", { invoices: getInvoices });
   } catch (error) {
     console.log(error);
   }
 });
-router.get("/invoice/:id", (req, res) => {
-  // Pobierz fakturę o danym id i wyrenderuj odpowiedni widok
+
+router.get("/invoice/:id", async (req, res) => {
+  try {
+    const invoiceId = req.params.id;
+    const getInvoices = await getInvoiceList();
+    const invoice = getInvoices.find((inv) => inv._id.toString() === invoiceId);
+
+    if (!invoice) {
+      return res.status(404).send("Invoice not found");
+    }
+
+    const numberToWords = number_words(invoice.rateMultiplyHours);
+
+    // Script to be injected
+    const script = `
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const savePdfButton = document.getElementById("save-pdf");
+          if (savePdfButton) {
+            savePdfButton.innerText = "Print PDF";
+            savePdfButton.addEventListener("click", function() {
+              window.print();
+            });
+          }
+        });
+      </script>
+      <style>
+        @page {
+          size: A4;
+          margin: 10mm;
+        }
+        @media print {
+          body {
+            zoom: 80%; /* 80% scale */
+          }
+          #save-pdf{
+            display: none;
+          }
+        }
+      </style>
+    `;
+
+    res.render("invoice", {
+      invoice: invoice,
+      numberToWords: numberToWords,
+      script: script,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving invoice");
+  }
 });
 
-module.exports = [router];
+module.exports = router;
