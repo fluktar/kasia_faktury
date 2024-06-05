@@ -26,5 +26,6 @@ app.use(function (error, req, res, next) {
 });
 
 db.connectToDatabase().then(function () {
-  app.listen(3005);
+  const port = process.env.PORT || 4501;
+  app.listen(port);
 });
