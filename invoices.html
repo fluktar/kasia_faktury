@@ -4,13 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Przeglądaj Faktury</title>
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="/dist/css/style.min.css" />
   </head>
   <body>
     <div class="container">
-      <h1>Lista Faktur</h1>
-      <div id="invoices-list"></div>
+      <h1 class="invoice_list">Lista Faktur</h1>
+      <div id="invoices-list">
+        <ul>
+          <% for(let i = 0; i < invoices.length; i++) { %>
+          <li class="invoice_element">
+            <div>
+              <div class="invoice">
+                <p>Godziny: <%= invoices[i].hours %></p>
+                <p>Stawka: <%= invoices[i].rate %></p>
+                <p>Opis: <%= invoices[i].description %></p>
+                <p>Numer faktury: <%= invoices[i].invoiceNumber %></p>
+                <p>Data: <%= invoices[i].date %></p>
+                <p>Stawka razy godziny: <%= invoices[i].rateMultiplyHours %></p>
+              </div>
+              <a href="/invoice/<%= invoices[i]._id %>">Link do faktury</a>
+            </div>
+          </li>
+          <% } %>
+        </ul>
+      </div>
     </div>
-    <script src="js/scripts.js"></script>
+    <script src="../dist/js/script.min.js"></script>
   </body>
 </html>

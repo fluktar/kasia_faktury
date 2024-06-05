@@ -15,5 +15,9 @@
 }
 
 h1 {
+  display: flex;
+  justify-self: start;
+  align-items: center;
   font-size: 4rem;
+  margin-left: 1rem;
 }

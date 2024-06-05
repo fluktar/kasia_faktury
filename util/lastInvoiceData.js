@@ -10,8 +10,18 @@ const getLastInvoiceData = async () => {
       .sort({ date: -1 })
       .limit(1)
       .toArray();
-
-    return lastInvoice[0];
+    if (lastInvoice.length > 0) {
+      return lastInvoice[0];
+    } else {
+      return {
+        hours: "1",
+        rate: "1",
+        description: "opis do faktury",
+        invoiceNumber: "1/1/2000",
+        date: "2000-01-1",
+        rateMultiplyHours: 1,
+      };
+    }
   } catch (error) {
     console.log(error);
     return null;

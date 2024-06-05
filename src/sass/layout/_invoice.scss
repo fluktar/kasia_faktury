@@ -13,6 +13,9 @@
     grid-column: 3/4;
   }
   .date_invoice {
+    display: flex;
+    width: 100%;
+    height: 100%;
     font-size: 2.5rem;
     align-items: center;
     text-align: center;
@@ -20,6 +23,7 @@
     grid-column: 3/4;
     &:last-child {
       margin-bottom: 4rem;
+      margin-right: 1rem;
     }
   }
   .invoice_number_text {
