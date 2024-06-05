@@ -58,7 +58,7 @@ router.post("/kasia_faktury", async (req, res) => {
     res.render("invoice", { invoice: invoice, numberToWords: numberToWords });
   } catch (error) {
     console.log(error);
-    res.status(500).send("Error adding invoice");
+    res.render("index");
   }
 });
 

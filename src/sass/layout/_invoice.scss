@@ -157,3 +157,87 @@
 .no-print {
   display: none;
 }
+/* Dodaj ten kod do swojego pliku _invoice.scss lub odpowiedniego pliku CSS */
+
+/* Style ogólne */
+// @page {
+//   size: A4;
+//   margin: 20mm;
+// }
+
+// body {
+//   font-family: Arial, sans-serif;
+//   font-size: 12pt;
+//   line-height: 1.5;
+// }
+
+// /* Ukrycie elementów, które nie powinny być drukowane */
+// .no-print {
+//   display: none !important;
+// }
+
+// /* Dostosowanie nagłówka i stopki */
+// header,
+// footer {
+//   page-break-after: always;
+// }
+
+// /* Dostosowanie tabel */
+// table {
+//   width: 100%;
+//   border-collapse: collapse;
+// }
+
+// table,
+// th,
+// td {
+//   border: 1px solid black;
+// }
+
+// th,
+// td {
+//   padding: 8px;
+//   text-align: left;
+// }
+
+// /* Dostosowanie marginesów */
+// .content {
+//   margin: 0;
+//   padding: 0;
+// }
+
+// /* Dostosowanie rozmiarów czcionek */
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   margin: 0;
+//   padding: 0;
+// }
+
+// h1 {
+//   font-size: 18pt;
+// }
+
+// h2 {
+//   font-size: 16pt;
+// }
+
+// p {
+//   margin: 0;
+//   padding: 0;
+// }
+
+// /* Dostosowanie obrazków */
+// img {
+//   max-width: 100%;
+//   height: auto;
+// }
+
+// /* Dostosowanie elementów blokowych */
+// .block {
+//   display: block;
+//   page-break-inside: avoid;
+// }

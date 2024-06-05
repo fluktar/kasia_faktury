@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="invoice">
-      <h1>Faktura</h1>
+      <h1>Faktura VAT</h1>
       <div class="invoice_number_text">Numer faktury:</div>
       <div class="date_invoice" type="data"><%= invoice.invoiceNumber %></div>
       <!-- <div
@@ -158,6 +158,10 @@
     </div>
 
     <script src="/dist/js/script.min.js"></script>
-    <%- script %>
+    <% if (typeof script !== 'undefined') { %> <%- script %> <% } else { %>
+    <script>
+      console.log("Script is not defined.");
+    </script>
+    <% } %>
   </body>
 </html>
