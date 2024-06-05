@@ -121,7 +121,7 @@ router.get("/invoice/:id", async (req, res) => {
         }
         @media print {
           body {
-            zoom: 80%; /* 80% scale */
+            zoom: 80%; 
           }
           #save-pdf{
             display: none;

@@ -20,7 +20,7 @@ const print = async (htmlContent, outputFilePath) => {
       content: `
       @page {
         size: A4;
-        margin: 20mm;
+        margin: 15mm;
       }
       
       body {
@@ -28,11 +28,25 @@ const print = async (htmlContent, outputFilePath) => {
         font-size: 12pt;
         line-height: 1.5;
       }
+      html{
+        width: 100%;
+      }
       
       .no-print {
         display: none !important;
       }
       
+.data_sale{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+
+}
+.data_sale div{
+  jasticfy-content: end;
+}
+
+
       header, footer {
         page-break-after: always;
       }
@@ -83,6 +97,12 @@ const print = async (htmlContent, outputFilePath) => {
         display: block;
         page-break-inside: avoid;
       }
+
+      
+
+
+
+
     `,
     });
 
