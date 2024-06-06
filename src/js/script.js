@@ -14,3 +14,7 @@ document.getElementById("save-pdf").addEventListener("click", async () => {
     alert("Błąd podczas zapisywania PDF-a.");
   }
 });
+
+const savePdf = document.getElementById("save-pdf");
+
+// Utwórz instancję obserwatora mutacji

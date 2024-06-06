@@ -9,6 +9,7 @@ const lastInvoiceData = require("../util/lastInvoiceData");
 const removeInvoice = require("../util/remove_invoice");
 const router = express.Router();
 const number_words = require("../util/number_words");
+const { ObjectId } = require("mongodb"); // Dodany import
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
