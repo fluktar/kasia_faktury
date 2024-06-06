@@ -26,7 +26,10 @@
                   Stawka razy godziny: <%= invoices[i].rateMultiplyHours %>
                 </p>
               </div>
-              <a href="/invoice/<%= invoices[i]._id %>">Link do faktury</a>
+              <div class="btn-invoices-action">
+                <a href="/invoice/<%= invoices[i]._id %>">Link do faktury</a>
+                <a href="/remove/<%= invoices[i]._id %>">Usuń</a>
+              </div>
             </div>
           </li>
           <% } %>

@@ -1,15 +1,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const methodOverride = require("method-override");
 const path = require("path");
 const print = require("../util/print");
 const db = require("../data/database");
 const getInvoiceList = require("../util/invoice_element");
 const lastInvoiceData = require("../util/lastInvoiceData");
+const removeInvoice = require("../util/remove_invoice");
 const router = express.Router();
 const number_words = require("../util/number_words");
 
 router.use(bodyParser.json()); // for parsing application/json
 router.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+router.use(methodOverride("_method"));
 
 router.get("/", (req, res) => {
   res.render("login");
@@ -30,7 +33,6 @@ router.post("/login", async (req, res) => {
 
     if (user && password) {
       const lastInvoice = await lastInvoiceData();
-
       res.render("index", { invoice: lastInvoice });
     }
   } catch (error) {
@@ -139,6 +141,31 @@ router.get("/invoice/:id", async (req, res) => {
     console.error(error);
     res.status(500).send("Error retrieving invoice");
   }
+});
+
+// Dodanie obsługi usuwania faktur metodą POST z method-override
+router.post("/remove/:id", (req, res) => {
+  const invoiceId = req.params.id;
+
+  db.getDb()
+    .collection("faktury_kasia")
+    .deleteOne({ _id: new ObjectId(invoiceId) })
+    .then(() => {
+      return db.getDb().collection("faktury_kasia").find().toArray();
+    })
+    .then((invoices) => {
+      res.render("invoices", { invoices: invoices });
+    })
+    .catch((error) => {
+      console.error("Error deleting invoice:", error);
+      res.status(500).json({ message: "An error occurred" });
+    });
+});
+
+// Global error handling middleware
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
 });
 
 module.exports = router;

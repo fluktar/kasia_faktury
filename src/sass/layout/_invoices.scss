@@ -47,13 +47,18 @@
         }
       }
     }
-    a {
-      text-decoration: none;
-      color: black;
-      font-size: 2rem;
-      margin: 1rem auto;
+    .btn-invoices-action {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      margin: 1rem auto;
+      a {
+        text-decoration: none;
+        color: black;
+        font-size: 2rem;
+        margin: 1rem auto;
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 }
