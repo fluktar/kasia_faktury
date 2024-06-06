@@ -3,7 +3,7 @@ const db = require("../data/database");
 
 const removeInvoice = (req, res, next) => {
   const invoiceId = req.params.id;
-  console.log("Received invoice ID:", invoiceId); // Logowanie otrzymanego identyfikatora
+  // Logowanie otrzymanego identyfikatora
 
   if (!ObjectId.isValid(invoiceId)) {
     console.error("Invalid invoice ID received:", invoiceId);
