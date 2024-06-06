@@ -9,7 +9,7 @@
   <body>
     <div class="container">
       <h1 class="invoice_list">Lista Faktur</h1>
-      <div class="invoices-list">
+      <!-- <div class="invoices-list">
         <ul>
           <% for(let i = 0; i < invoices.length; i++) { %>
           <li class="invoice_element">
@@ -34,8 +34,50 @@
           </li>
           <% } %>
         </ul>
+      </div> -->
+
+      <div class="invoices-list">
+        <ul>
+          <% for(let i = 0; i < invoices.length; i++) { %>
+          <li class="invoice_element" id="invoice-<%= invoices[i]._id %>">
+            <div>
+              <div class="invoice">
+                <p class="item-1 item">Godziny: <%= invoices[i].hours %></p>
+                <p class="item-2 item">Stawka: <%= invoices[i].rate %></p>
+                <p class="item-3 item">Opis: <%= invoices[i].description %></p>
+                <p class="item-4 item">
+                  Numer faktury: <%= invoices[i].invoiceNumber %>
+                </p>
+                <p class="item-5 item">Data: <%= invoices[i].date %></p>
+                <p class="item-6 item">
+                  Stawka razy godziny: <%= invoices[i].rateMultiplyHours %>
+                </p>
+              </div>
+              <div class="btn-invoices-action">
+                <a href="/invoice/<%= invoices[i]._id %>">Link do faktury</a>
+
+                <form
+                  action="/remove/<%= invoices[i]._id %>"
+                  method="POST"
+                  onsubmit="return confirm('Are you sure you want to delete this invoice?');"
+                >
+                  <input type="hidden" name="_method" value="DELETE" />
+                  <button
+                    type="submit"
+                    id="btn-<%= invoices[i]._id %>"
+                    class="btn-delete"
+                  >
+                    Delete
+                  </button>
+                </form>
+              </div>
+            </div>
+          </li>
+          <% } %>
+        </ul>
       </div>
     </div>
+
     <script src="../dist/js/script.min.js"></script>
   </body>
 </html>

@@ -10,8 +10,8 @@ const removeInvoice = require("../util/remove_invoice");
 const router = express.Router();
 const number_words = require("../util/number_words");
 
-router.use(bodyParser.json()); // for parsing application/json
-router.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: true }));
 router.use(methodOverride("_method"));
 
 router.get("/", (req, res) => {
@@ -94,8 +94,14 @@ router.get("/invoices", async (req, res) => {
 router.get("/invoice/:id", async (req, res) => {
   try {
     const invoiceId = req.params.id;
-    const getInvoices = await getInvoiceList();
-    const invoice = getInvoices.find((inv) => inv._id.toString() === invoiceId);
+    if (!ObjectId.isValid(invoiceId)) {
+      return res.status(400).send("Invalid invoice ID");
+    }
+
+    const invoice = await db
+      .getDb()
+      .collection("faktury_kasia")
+      .findOne({ _id: new ObjectId(invoiceId) });
 
     if (!invoice) {
       return res.status(404).send("Invoice not found");
@@ -103,14 +109,13 @@ router.get("/invoice/:id", async (req, res) => {
 
     const numberToWords = number_words(invoice.rateMultiplyHours);
 
-    // Script to be injected
     const script = `
       <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          const savePdfButton = document.getElementById("save-pdf");
+        document.addEventListener('DOMContentLoaded', function() {
+          const savePdfButton = document.getElementById('save-pdf');
           if (savePdfButton) {
-            savePdfButton.innerText = "Print PDF";
-            savePdfButton.addEventListener("click", function() {
+            savePdfButton.innerText = 'Print PDF';
+            savePdfButton.addEventListener('click', function() {
               window.print();
             });
           }
@@ -123,9 +128,9 @@ router.get("/invoice/:id", async (req, res) => {
         }
         @media print {
           body {
-            zoom: 80%; 
+            zoom: 80%;
           }
-          #save-pdf{
+          #save-pdf {
             display: none;
           }
         }
@@ -143,26 +148,8 @@ router.get("/invoice/:id", async (req, res) => {
   }
 });
 
-// Dodanie obsługi usuwania faktur metodą POST z method-override
-router.post("/remove/:id", (req, res) => {
-  const invoiceId = req.params.id;
+router.post("/remove/:id", removeInvoice);
 
-  db.getDb()
-    .collection("faktury_kasia")
-    .deleteOne({ _id: new ObjectId(invoiceId) })
-    .then(() => {
-      return db.getDb().collection("faktury_kasia").find().toArray();
-    })
-    .then((invoices) => {
-      res.render("invoices", { invoices: invoices });
-    })
-    .catch((error) => {
-      console.error("Error deleting invoice:", error);
-      res.status(500).json({ message: "An error occurred" });
-    });
-});
-
-// Global error handling middleware
 router.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
