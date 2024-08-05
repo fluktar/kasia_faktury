@@ -10,6 +10,18 @@
   <body>
     <div class="container">
       <h1 class="u-margin-bottom-medium">Wprowadź dane faktury</h1>
+      <div class="menu" id="menu">
+  <div class="ico" id="icoMenu">
+    <div class="left1">/</div>
+    <div class="right1">\</div>
+  </div>
+  <ul id="menuUl">
+    <li><a href="/">Logowanie do systemu</a></li>
+    <li><a href="#">Lista faktur - pliki</a></li>
+    <li><a href="/invoices">Lista faktur</a></li>
+  </ul>
+</div>
+
       <form id="invoice-form" action="/kasia_faktury" method="post">
         <label for="hours">Liczba godzin:</label>
         <input
@@ -64,5 +76,6 @@
     <footer></footer>
 
     <script src="/dist/js/script.min.js"></script>
+    <script src="../dist/js/showMenu.min.js"></script>
   </body>
 </html>

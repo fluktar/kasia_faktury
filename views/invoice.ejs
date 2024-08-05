@@ -9,6 +9,18 @@
   <body>
     <div class="invoice">
       <h1>Faktura VAT</h1>
+      <div class="menu" id="menu">
+  <div class="ico" id="icoMenu">
+    <div class="left1">/</div>
+    <div class="right1">\</div>
+  </div>
+  <ul id="menuUl">
+    <li><a href="/">Logowanie do systemu</a></li>
+    <li><a href="#">Lista faktur - pliki</a></li>
+    <li><a href="/invoices">Lista faktur</a></li>
+  </ul>
+</div>
+
       <div class="invoice_number_text">Numer faktury:</div>
       <div class="date_invoice" type="data"><%= invoice.invoiceNumber %></div>
       <!-- <div
@@ -158,6 +170,7 @@
     </div>
 
     <script src="/dist/js/script.min.js"></script>
+    <script src="../dist/js/showMenu.min.js"></script>
     <% if (typeof script !== 'undefined') { %> <%- script %> <% } else { %>
     <script>
       console.log("Script is not defined.");

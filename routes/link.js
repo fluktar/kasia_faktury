@@ -26,7 +26,7 @@ router.post("/login", async (req, res) => {
     const user = await db
       .getDb()
       .collection("users")
-      .findOne({ userName: loginToInvoice });
+      .findOne({ username: loginToInvoice });
     const password = await db
       .getDb()
       .collection("users")
@@ -131,6 +131,9 @@ router.get("/invoice/:id", async (req, res) => {
           body {
             zoom: 80%;
           }
+            #menu{
+            display: none;
+            }
           #save-pdf {
             display: none;
           }

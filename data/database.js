@@ -11,11 +11,19 @@
 // ---------------------------------------------------------------
 //tutaj jest mongodb
 const mongodb = require("mongodb");
+const pas = require("./password");
 const MongoClient = mongodb.MongoClient;
 let database;
 async function connect() {
-  const client = await MongoClient.connect("mongodb://localhost:27017");
-  database = client.db("faktury_kasia");
+  try {
+    const client = await MongoClient.connect(
+      `mongodb://admin:${pas}@localhost:27017/?authSource=admin`
+    );
+    database = client.db("faktury_kasia");
+    console.log("Połączono z bazą danych faktury_kasia");
+  } catch (error) {
+    console.log("Error connecting to the database", error);
+  }
 }
 
 function getDb() {

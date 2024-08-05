@@ -16,5 +16,3 @@ document.getElementById("save-pdf").addEventListener("click", async () => {
 });
 
 const savePdf = document.getElementById("save-pdf");
-
-// Utwórz instancję obserwatora mutacji

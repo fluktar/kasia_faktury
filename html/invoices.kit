@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="/dist/css/style.min.css" />
   </head>
   <body>
-    <div class="container">
+    <div class="container" style="position: relative">
       <h1 class="invoice_list">Lista Faktur</h1>
+      @@include("_menu.kit")
       <!-- <div class="invoices-list">
         <ul>
           <% for(let i = 0; i < invoices.length; i++) { %>
@@ -78,6 +79,16 @@
       </div>
     </div>
 
-    <script src="../dist/js/script.min.js"></script>
+    <script src="/dist/js/script.min.js" defer></script>
+    <!-- <script>
+      const menuUl = document.getElementById("menuUl");
+      const icoMenu = document.getElementById("icoMenu");
+      function toggleMenu() {
+        menuUl.classList.toggle("show");
+      }
+      icoMenu.addEventListener("click", toggleMenu);
+    </script> -->
+
+    <script src="../dist/js/showMenu.min.js"></script>
   </body>
 </html>

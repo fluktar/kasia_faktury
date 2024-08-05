@@ -10,6 +10,7 @@
   <body>
     <div class="container">
       <h1 class="u-margin-bottom-medium">Wprowadź dane faktury</h1>
+      @@include('_menu.kit')
       <form id="invoice-form" action="/kasia_faktury" method="post">
         <label for="hours">Liczba godzin:</label>
         <input
@@ -63,5 +64,6 @@
     </div>
     @@include('_footer.kit')
     <script src="/dist/js/script.min.js"></script>
+    <script src="../dist/js/showMenu.min.js"></script>
   </body>
 </html>
